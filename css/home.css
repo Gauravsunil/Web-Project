@@ -1,0 +1,231 @@
+body{
+    margin: 0px;
+    background-color: #000;
+}
+
+
+/* Banner */
+
+.banner{
+    height:640px;
+    margin: auto;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    border-bottom-right-radius: 250px;
+    border-bottom-left-radius: 250px;
+}
+.bannerTop{
+    background:#333;
+    opacity: 0.8;
+    width: 100%;
+    height: 100%;
+    border-bottom-right-radius: 250px;
+    border-bottom-left-radius: 250px;
+}
+.movieBanner .banner .details{
+    color: #fff;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    font-family: monospace;
+    font-size: 12px;
+}
+.movieBanner .banner .details>:nth-child(1){
+    position: absolute;
+    top:32%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    font-family: monospace;
+    font-size: 25px;
+}
+.movieBanner .banner .details>:nth-child(2){
+    position: absolute;
+    width: 400px;
+    left: 120px;
+    bottom: 250px;
+}
+.playButton #playTrailer i{
+    border-radius: 50%;
+    background: #fff;
+    color: #333;
+    position: relative;
+    top:3px;
+    margin: auto -5px;
+    cursor: pointer;
+    transition: transform 0..s;
+}
+.playButton #playTrailer i:hover{
+    transform: scale(1.2);
+}
+.trailerScreen{
+    position: fixed;
+    display: none;
+    width:100%;
+    height: 100%;
+    z-index: 200;
+    top: 0;
+    left: 0;
+    background: rgba(51, 51, 51, 0.877);
+}
+.trailerScreen  iframe{
+    position: absolute;
+    left: 50%;
+    top:50%;
+    transform: translate(-50%,-50%);
+}
+@media only screen and (max-width:800px){
+    p#bMovieTitle{
+        position: relative;
+        top:-120px;
+    }
+}
+/* Now Plaing Slider */
+.nowTrending{
+    font-family: monospace;
+    position: relative;
+    top:-200px;
+    margin-bottom: -150px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.nowTrending .featured{
+    margin: 0px;
+    color: #fff;
+    font-family: monospace;
+    font-size: 24px;
+    margin-bottom: 15px;
+}
+.nowTrending .slider{
+    display: flex;
+    justify-content: center;
+}
+
+.nowTrending .slider .slide{
+    width:150px;
+    height:220px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    box-shadow: #000 5px 5px 15px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+.nowTrending .slider .slide:hover{
+    transform: scale(1.3);
+}
+@media only screen and (max-width: 900px) {
+    .nowTrending .slider .slide{
+        width:60px;
+        height:88px;
+    }    
+}
+
+.tvSeries>p.title{
+    text-align: center;
+    font-size: 2.8em;
+}
+/* Popular Movies Slider */
+.tvSeries .playTvButton{
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+    z-index: 100;
+    background: #333;
+    padding: 5px 15px 10px 15px;
+    border-radius: 20px;
+}
+.tvSeries .playTvButton span{
+    position: relative;
+    top:7px;
+}
+.tvSeries span:hover i{
+    transform: scale(1.3);
+    color:aqua;
+    cursor: pointer;
+}
+.featured{
+    margin: auto 65px;
+    position: relative;
+    margin-bottom: 50px;
+}
+.featured .title{
+    color: #fff;
+    font-family: monospace;
+    font-size: 1.8em;
+    margin-bottom:12px; 
+}
+.featured .title span a{
+    color: #ddd;
+    font-size: 0.7em;
+}
+.featured .slider{
+    display: flex;
+    box-sizing: border-box;
+    overflow-X: scroll;
+    overflow-y: hidden;
+    padding-bottom: 10px;
+}
+.featured .slider div{
+    margin: 5px;
+    transition: transform 0.5s ;
+    cursor: pointer;
+    box-sizing: border-box;
+}
+.featured .slider div:hover{
+    transform: scale(1.3);
+}
+.featured .slider::-webkit-scrollbar{
+    background-color: #fff;
+    height: 5px
+}
+.featured .slider::-webkit-scrollbar-thumb{
+    background-color: red;
+}
+.tvSeries .trendingTV{
+    background-color: #333;
+    padding:20px;
+    border-radius:15px;
+}
+
+@media only screen and (min-width:750px){
+    .tvSeries .backdrop {
+        width:40%;
+    }
+    .tvSeries .details{
+        width:25%;
+    }
+}
+.tvSeries .backdrop img{
+    width:100%;
+}
+.tvSeries .backdrop{
+    position: relative;
+}
+.tvSeries .trendingTV .details{
+    background: #111;
+    border: 1px solid white;
+    padding:14px;
+    box-sizing: border-box;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
+.tvSeries .trendingTV .trendingTVFeatured{
+    display: flex;
+    justify-content: center;
+    color: #fff;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+.tvSeries .trendingTV .slider img{
+    width: 100px;
+}
+.tvSeries .featured{
+    margin-top: 20px;
+}
+
+

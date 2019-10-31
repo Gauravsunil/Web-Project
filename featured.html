@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Sugoi Site</title>
+</head>    
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+rel="stylesheet">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<link rel="stylesheet" href="./css/header.css">  
+<link rel="stylesheet" href="./css/featured.css">  
+<body>
+    <div class="navigation">
+        <div class="left">
+                <div class="brand"><span><img src="./img/logo.svg" alt=""></span><a href='home.html'><span>Sugoi Site</span></a></div>
+        </div>
+        <div class="right">
+            <div class="search">
+                <i class="material-icons">search</i>
+            </div>
+        </div>
+    </div>
+    
+
+<div class="featured">
+    <div class="featuredName"></div>
+    <div class="pagination">
+        <button id="prevBtn" onclick="prev()">-</button>
+        <form id='paginationForm'>
+            <input type="text" placeholder="1" value=''>
+        </form>
+        <button id="nextBtn" onclick=next()>+</button>
+    </div>
+
+    <div class='collection'>
+    </div>
+
+    <div class="pagination">
+        <button id="prevBtn" onclick="prev()">-</button>
+        <form id='paginationForm'>
+            <input type="text" placeholder="1" value=''>
+        </form>
+        <button id="nextBtn" onclick=next()>+</button>
+    </div>
+</div>
+
+
+<footer>
+    <div class="div-footer">
+            <div class="block1">
+                <img src="./img/logo.svg" alt="">
+                <h3 style="color: aliceblue">Sugoi Site</h3>
+            </div>
+            <div class="block2" >
+                <div class="links">
+                    <ul>
+                        <li><h4>Movies</h4></li>
+                        <li><a href="featured.html?featured=popular&media=movie">Popular Movies</a></li>
+                        <li><a href="featured.html?featured=top_rated&media=movie">Top Rated Movies</a></li>
+                        <li><a href="featured.html?featured=now_playing&media=movie">Now Playing Movies</a></li>
+                        <li><a href="featured.html?featured=upcoming&media=movie">Upcoming Movies</a></li>
+                    </ul>
+                </div>
+                <div class="links">
+                    <ul>
+                        <li><h4>Movies</h4></li>
+                        <li><a href="featured.html?featured=popular&media=tv">Popular Tv</a></li>
+                        <li><a href="featured.html?featured=top_rated&media=tv">Top Rated Tv</a></li>
+                        <li><a href="featured.html?featured=on_the_air&media=tv">On The Air Tv</a></li>
+                    </ul>
+                </div>
+                <div class="links">
+                    <ul>
+                        <li><h4>Support</h4></li>
+                        <li><a href="#">About Us</a> </li>
+                        <li><a href="#">Terms of use</a> </li>
+                        <li><a href="#">Privacy Policies</a></li>
+                    </ul>
+                </div>
+            </div>
+    </div>
+
+    <div class="icons">
+            <ul>
+                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                <li><a href="#"><i class="fa fa-youtube"></i></a></li>
+            </ul>
+            <span>All rights are reserved to Sugoi-Site</span>
+        </div>
+</footer>
+
+
+<div class="searchScreen">
+    <div class="searchInput">
+        <form id='searchForm'>
+            <input type="text" placeholder="search movies & tv shows..."> <button type="submit"> <i class="material-icons">search</i> </button>
+        </form>
+        <div class="searchResult">
+        </div>
+    </div>
+</div>
+</body>
+<script>
+    let page=1;
+    let params = (new URL(document.location)).searchParams;
+    let media=params.get('media');
+    let featured=params.get('featured');
+
+    let featuredName=document.querySelector('.featuredName');
+    if(media=='movie'){
+        let f=featured.replace(featured.charAt(0),featured.charAt(0).toUpperCase())
+        featuredName.innerText=`${f} Movies`;
+    } else if(media=='tv'){
+        let f=featured.replace(featured.charAt(0),featured.charAt(0).toUpperCase());
+        featuredName.innerText=`${f} TV Shows`;
+    }
+
+    // function for fetching api data
+    async function fetchApi(url){
+        let res=await fetch(url);
+        return res.json();
+    }
+    function next(){
+        if(page<20){
+            page++;
+            let collection=document.querySelector('.collection div');
+            collection.remove();
+            document.querySelector('#paginationForm input').value=page;            
+            document.querySelectorAll('#paginationForm input')[1].value=page;            
+            
+            getFeatured(page);
+        }
+
+    }
+    function prev(){
+        if(page>1){
+            page--;
+            let collection=document.querySelector('.collection div');
+            collection.remove();
+            document.querySelectorAll('#paginationForm input')[1].value=page;            
+            document.querySelector('#paginationForm input').value=page;
+            getFeatured(page);
+        }
+    }
+    function getFeatured(page){
+        let url=`https://api.themoviedb.org/3/${media}/${featured}?api_key=f2389eed03b839edeb2178897fa33c6d&page=${page}`;
+        fetchApi(url).then((res)=>{
+            console.log(res);
+            setFeatured(res.results);
+        })
+    }
+    getFeatured(page);
+
+    function setFeatured(res){
+        let container=document.querySelector('.collection');
+        let collection=document.createElement('div');
+        container.appendChild(collection);        
+        res.forEach(item => {
+            let post=document.createElement('div');
+            let detail=document.createElement('div');            
+            collection.appendChild(post);
+            let img=document.createElement('img');
+            if(item.backdrop_path!=null)
+            img.setAttribute('src',`https://image.tmdb.org/t/p/w500/${item.backdrop_path}`);
+            img.setAttribute('alt',`Backdrop not found`);
+            post.appendChild(img);
+            post.appendChild(detail);
+            detail.innerText=item.title;
+            if(media=='tv')
+            detail.innerText=item.original_name;
+
+            post.onclick=()=>{
+                window.location.href=`/sugoi-site/single.html?id=${item.id}&type=${media}`;  
+            }
+        });
+    }
+
+    let paginationForm=document.getElementById('paginationForm');
+    paginationForm.onsubmit=(e)=>{
+        e.preventDefault();
+        let num=parseInt(document.querySelector('#paginationForm input').value);
+        
+        if(num<=20 && num>=0)
+        page=num;
+        else
+        alert('Page: 0 to 20 only');
+        let collection=document.querySelector('.collection div');
+        collection.remove();
+        document.querySelectorAll('#paginationForm input')[0].value=page;                    
+        document.querySelectorAll('#paginationForm input')[1].value=page;            
+
+        getFeatured(page);
+    }
+
+
+
+    // Search Movies or TV shows
+let searchIcon=document.querySelector('.navigation .right .search i');
+    searchIcon.onclick=()=>{
+        let searchScreen=document.querySelector('.searchScreen');
+        let sc=window.pageYOffset;
+        if(searchIcon.textContent=="search"){
+            searchScreen.style.width="100%";
+            searchIcon.textContent="close";
+            window.scrollTo(0,sc+101);
+        }else{
+            searchScreen.style.width="0%";
+            searchIcon.textContent="search";
+            window.scrollTo(0,sc-101);
+        }
+    }
+
+async function getSearchData(url){
+    let response=await fetch(url);
+    return response.json();
+}
+function setSearchResult(movie){
+    console.log(movie);
+    let parent = document.querySelector('.searchResult');
+    let result=document.createElement('div');
+    result.innerHTML=`<div class="poster"></div> <div class="details"></div>`;
+    parent.append(result);
+    let posterDiv=document.querySelector('.searchResult>div:last-of-type .poster');
+    let backdropPath=`https://image.tmdb.org/t/p/w300/${movie.backdrop_path}`;
+    posterDiv.style.backgroundImage=`url(${backdropPath})`;
+    let detailsDiv=document.querySelector('.searchResult>div:last-of-type .details');
+    let title=null;
+    if(movie.media_type=="tv")
+    title=movie.original_name;
+    else
+    title=movie.title;
+    detailsDiv.innerHTML=`<p><a>${title}</a></p>`;
+    result.onclick=()=>{
+        window.location.href=`/sugoi-site/single.html?id=${movie.id}&type=${movie.media_type}`;
+    }
+}
+searchForm.onsubmit=function searchFunction(e){
+    e.preventDefault();
+    let queryBox=document.querySelector('input');
+    let query=queryBox.value;
+
+    let parent = document.querySelector('.searchResult');
+    parent.innerHTML="";
+
+    let url=`https://api.themoviedb.org/3/search/multi?api_key=f2389eed03b839edeb2178897fa33c6d&query=${query}&page=1`;
+    getSearchData(url).then((data)=>{
+        results=data.results;
+        let newR=[];
+        results.forEach(item=>{
+            if(item.media_type!="person" && item.backdrop_path!=null)
+            newR.push(item);
+        })
+        if(newR.length==0){
+            let parent = document.querySelector('.searchResult');
+            parent.innerHTML="<h3>No Results</h3>"
+        } else {
+            newR.forEach(item=>{
+                setSearchResult(item);
+            })
+        }
+    });
+}
+
+</script>
+</html>

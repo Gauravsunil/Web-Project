@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Single</title>
+</head>
+<link rel="stylesheet" href="css/single.css">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+<link rel="stylesheet" href="css/header.css">
+
+<script
+  src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous"></script>
+  <script
+  src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
+  integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
+  crossorigin="anonymous"></script>
+  <script>
+  $( function() {
+    $( "#tabs" ).tabs();
+  } );
+  </script>
+
+
+<body>
+
+
+    <div class="navigation">
+        <div class="left">
+                <div class="brand"><span><img src="./img/logo.svg" alt=""></span><a href='home.html'><span>Sugoi Site</span></a></div>
+        </div>
+        <div class="right">
+            <div class="search">
+                <i class="material-icons">search</i>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+      <div class="single">
+        <div class="left">
+
+        </div>
+        <div class="right">
+            <div class="extras" id="tabs">
+                <ul>
+                    <li><a href="#details">Details</a></li>
+                    <li><a href="#videos">Videos</a></li>
+                    <li><a href="#posters">Posters</a></li>
+                    <li><a href="#credits">Credits</a></li>
+                    <li><a href="#similar">Similar</a></li>
+                  </ul>
+                  <div class="details" id='details'>
+                    <p>
+                        <div class='singleName'></div>
+                        <div class='release'></div>
+                        <div class="genre"></div>
+                        <div class="overview"></div>
+                        <div class="ratings">
+                        </div>
+                    </p>
+                  </div>
+                  <div id="videos">
+                    <div class='videoFrame'>
+                        <iframe frameborder="0" allow="accelerometer; autoplay; encrypted-media; " allowfullscreen></iframe>
+                    </div>
+                    <div class="otherVideos">
+
+                    </div>
+                  </div>
+                  <div id="posters">
+                    <h3>Backdrops</h3>
+                    <div class="backdrops">
+                    </div>
+                    <h3>Posters</h3>
+                    <div class="posters">
+                    </div>
+                  </div>
+                  <div id="credits">
+                    <h3>Casts</h3>
+                    <div class='casts'>
+                    </div>
+                    <h3>Crew</h3>
+                    <div class="crews">
+                    </div>
+                  </div>                
+                  <div id="similar">
+                      <p>Similar</p>
+                    <div class="similars">
+                    </div>
+
+                    <p>Recommendations</p>
+                    <div class="recommendations">
+                    </div>
+                  </div>
+            </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="searchScreen">
+        <div class="searchInput">
+            <form id='searchForm'>
+                <input type="text" placeholder="search movies & tv shows..."> <button type="submit"> <i class="material-icons">search</i> </button>
+            </form>
+            <div class="searchResult">
+            </div>
+        </div>
+    </div>
+    
+</body>
+<script src="js/single.js"></script>
+<script>
+  let searchIcon=document.querySelector('.navigation .right .search i');
+    searchIcon.onclick=()=>{
+        let searchScreen=document.querySelector('.searchScreen');
+        let sc=window.pageYOffset;
+        if(searchIcon.textContent=="search"){
+            searchScreen.style.width="100%";
+            searchIcon.textContent="close";
+            window.scrollTo(0,sc+101);
+        }else{
+            searchScreen.style.width="0%";
+            searchIcon.textContent="search";
+            window.scrollTo(0,sc-101);
+        }
+    }
+</script>
+</html>

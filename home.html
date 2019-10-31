@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Sugoi Site</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+      <link rel="stylesheet" href="./css/header.css">    
+      <link rel="stylesheet" href="./css/home.css">
+</head>
+<body>
+
+    
+    <div class="navigation">
+        <div class="left">
+                <div class="brand"><span><img src="./img/logo.svg" alt=""></span><a href='home.html'><span>Sugoi Site</span></a></div>
+        </div>
+        <div class="right">
+            <div class="search">
+                <i class="material-icons">search</i>
+            </div>
+        </div>
+    </div>
+
+    <div class="movieBanner">
+        <div class="banner">
+            <div class="bannerTop"></div>
+            <div class="details">
+                <div class="playButton">Watch <span id="playTrailer"></span> Now </div>
+                <div>
+                    <p id="bMovieTitle">Movie Title</p>
+                    <p id="bMovieGenre"></p>
+                    <p id="bMovieOverview"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="nowTrending">
+        <div class="featured">Trending Movies</div>
+        <div class="slider"></div>
+    </div>
+
+
+    <div class="popularMovies featured">
+        <div class="title">Popular Movies <span><a href="featured.html?featured=popular&media=movie"> See All</a></span></div>
+        <div class="slider"></div>
+    </div>
+
+    <div class="topRatedMovies featured">
+        <div class="title">Top Rated Movies <span><a href="featured.html?featured=top_rated&media=movie"> See All</a></span</div>
+        <div class="slider"></div>
+    </div>
+
+    <div class="tvSeries">
+        <p class="title">TV Shows</p>
+        <div class="trendingTV">
+            <div class="title">Trending of the day</div>
+            <div class="trendingTVFeatured">
+                <div class="backdrop"><img src="" ><div class="playTvButton">Watch <span id="playTvTrailer"></span> Now </div>
+            </div>
+                <div class="details">
+                    <p id="bTVTitle">Movie Title</p>
+                    <p id="bTVOverview">Overview</p>
+                </div>
+            </div>
+            <div class="title">Trending(week)</div>
+        <div class="slider"></div>
+        </div>
+
+        <div class="onAirTV featured">
+            <div class="title">On Air TV Shows<span><a href="featured.html?featured=on_the_air&media=tv"> See All</a></span></div>
+            <div class="slider"></div>
+        </div>
+
+        <div class="topRated featured">
+            <div class="title">Top Rated TV Shows
+                <span><a href="featured.html?featured=top_rated&media=tv"> See All</a></span>
+            </div>
+            <div class="slider"></div>
+        </div>
+
+
+<footer>
+        <div class="div-footer">
+                <div class="block1">
+                    <img src="./img/logo.svg" alt="">
+                    <h3 style="color: aliceblue">Sugoi Site</h3>
+                </div>
+                <div class="block2" >
+                    <div class="links">
+                        <ul>
+                            <li><h4>Movies</h4></li>
+                            <li><a href="featured.html?featured=popular&media=movie">Popular Movies</a></li>
+                            <li><a href="featured.html?featured=top_rated&media=movie">Top Rated Movies</a></li>
+                            <li><a href="featured.html?featured=now_playing&media=movie">Now Playing Movies</a></li>
+                            <li><a href="featured.html?featured=upcoming&media=movie">Upcoming Movies</a></li>
+                        </ul>
+                    </div>
+                    <div class="links">
+                        <ul>
+                            <li><h4>Movies</h4></li>
+                            <li><a href="featured.html?featured=popular&media=tv">Popular Tv</a></li>
+                            <li><a href="featured.html?featured=top_rated&media=tv">Top Rated Tv</a></li>
+                            <li><a href="featured.html?featured=on_the_air&media=tv">On The Air Tv</a></li>
+                        </ul>
+                    </div>
+                    <div class="links">
+                        <ul>
+                            <li><h4>Support</h4></li>
+                            <li><a href="#">About Us</a> </li>
+                            <li><a href="#">Terms of use</a> </li>
+                            <li><a href="#">Privacy Policies</a></li>
+                        </ul>
+                    </div>
+                </div>
+        </div>
+    
+        <div class="icons">
+                <ul>
+                    <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                    <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                    <li><a href="#"><i class="fa fa-youtube"></i></a></li>
+                </ul>
+                <span>All rights are reserved to Sugoi-Site</span>
+            </div>
+    </footer>
+
+    <div class="searchScreen">
+        <div class="searchInput">
+            <form id='searchForm'>
+                <input type="text" placeholder="search movies, tv shows and people ..."> <button type="submit"> <i class="material-icons">search</i> </button>
+            </form>
+            <div class="searchResult">
+            </div>
+        </div>
+    </div>
+    <div class="trailerScreen">
+        <iframe width="800" height="450"  frameborder="0" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+</body>
+<script src="./js/home.js"></script>
+<script>
+    window.onscroll=()=>{
+        let nav=document.querySelector('.navigation');
+        let sc=window.pageYOffset;
+        if(sc>100)
+        nav.style.background="rgba(20, 20, 20, 1)";
+        else
+        nav.style.background="rgba(20, 20, 20, 0)";
+    }
+    
+    let searchIcon=document.querySelector('.navigation .right .search i');
+    searchIcon.onclick=()=>{
+        let searchScreen=document.querySelector('.searchScreen');
+        let sc=window.pageYOffset;
+        if(searchIcon.textContent=="search"){
+            searchScreen.style.width="100%";
+            searchIcon.textContent="close";
+            window.scrollTo(0,sc+101);
+        }else{
+            searchScreen.style.width="0%";
+            searchIcon.textContent="search";
+            window.scrollTo(0,sc-101);
+        }
+    }
+</script>
+</html>

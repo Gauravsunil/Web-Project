@@ -1,0 +1,219 @@
+body{
+    margin: 0px;
+    background-color: #000;
+}
+
+/* Navigation Menu */
+
+.navigation{
+    color: #fff;
+    position: fixed;
+    z-index: +100;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: -10px;
+    background: #111;
+    transition: background 0.5s;
+    border-bottom-left-radius: 150px;
+    border-bottom-right-radius: 150px;
+}
+.navigation .left{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 60px;
+}
+.navigation .left .brand a{
+    text-decoration: none;
+    color: aqua;;
+}
+.navigation .brand{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;    
+}
+.navigation .left .brand span{
+    margin: 0px 20px;
+}
+.navigation .left .brand{
+    font-size: 24px;
+    font-family: cursive;
+    color: aquamarine;
+}
+.navigation .brand span:first-of-type img{
+    width:70px;
+}
+.navigation .browse{
+    display: flex;
+    align-items: center;
+    color: rgb(139, 138, 138);
+    cursor: pointer;
+}
+.navigation .browse :nth-child(2) i{
+    margin-top: 5px;
+}
+.navigation .right{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 100px;
+}
+.navigation .right div{
+    margin: 0px 15px;
+}
+.navigation .right .search i{
+    cursor: pointer;
+}
+/* Search Screen */
+
+.searchScreen{
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 0%;
+    height: 100%;
+    background-color: #333;
+    z-index: +90;
+    transition: all 0.3s;
+    padding-top: 100px;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+.searchScreen .searchInput{
+    margin: auto;
+    text-align: center;
+    position: relative;
+}
+.searchScreen .searchInput input{
+    border: 0;
+    background: none;
+    border-bottom: 3px solid #fff;
+    width: 40%;
+    margin: auto;
+    font-size: 25px;
+    color: white;
+    padding: 10px 60px 10px 30px;
+}
+.searchInput input::placeholder{
+    font-size: 16px;
+}
+.searchScreen .searchInput button{
+    background: none;
+    border: 0px;
+    color: white;
+    position: relative;
+    top:10px;
+    right:40px;
+}
+
+.searchScreen .searchResult{
+    width: 80%;
+    margin: 80px auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+.searchScreen .searchResult>div{
+    display: flex;
+    flex-direction: column;
+    box-shadow: #000 8px -12px 15px;
+    margin:20px auto;
+    background: rgb(13, 87, 172);
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    transition: transform 0.3s;
+}
+.searchScreen .searchResult div .poster{
+    height:250px;
+    width:440px;
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+.searchScreen .searchResult div .details p{
+    color: #fff;
+    padding: 10px;
+    font-family: monospace;
+    font-size: 25px;
+    width: 420px;
+    background: rgb(13, 87, 172);
+    margin: 0;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
+.searchScreen .searchResult>div:hover{
+    transform: scale(1.03);
+    cursor: pointer;
+} 
+
+/* For Footer */
+footer{
+    background-color: #111;
+}
+.div-footer{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-around;
+    text-align:center;
+    margin: 20px;
+}
+.block1{
+    width:250px;
+}
+.block1 img{
+    width:70px;
+}
+.block2{
+    display: flex;
+    flex-wrap: wrap;
+}
+@media only screen and (max-width:600px){
+   .block2>div{
+       width:100%;
+       text-align: center;
+       margin: auto;
+   }
+   .block1{
+       width: 100%;
+   }
+   ul{
+       margin: 20px auto;
+    }
+}
+.links{
+    color: white;
+}
+ul{
+    list-style-type: none;
+    padding: 0;
+    margin: auto 50px;
+}
+ul li h4{
+    font-family: 'Acme', sans-serif;
+    font-family: 'Patua One', cursive;
+}
+li{
+    font-size: 15px;
+}
+a:hover{
+    text-decoration: none;
+}
+.icons{
+    text-align: center;
+}
+.icons ul{
+    padding-left: 0;
+}
+.icons ul li{
+    display: inline-block;
+    width: 30px;
+}
+.icons h5{
+    color: aliceblue;
+    font-family: 'Acme', sans-serif;
+    font-family: 'Patua One', cursive;
+}
+
